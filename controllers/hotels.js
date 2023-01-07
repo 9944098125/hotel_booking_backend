@@ -109,7 +109,7 @@ export const getHotelRooms = async (req, res, next) => {
     const hotel = await Hotels.findById(req.params.id);
     const rooms = await Promise.all(
       hotel.rooms.map((room) => {
-        return Rooms.findById(room._id);
+        return Rooms.findById(room);
       })
     );
     res.status(200).json({ rooms: rooms });

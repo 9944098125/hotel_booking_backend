@@ -12,7 +12,7 @@ import { verifyUser, verifyAdmin } from "../utils/verify.js";
 router.put("/updateUser/:id", verifyUser, updateUser);
 
 //DELETE
-router.delete("/deleteUser/:id", verifyUser, deleteUser);
+router.delete("/:id", verifyUser, deleteUser);
 
 //GET
 router.get("user/:id", verifyUser, getUser);

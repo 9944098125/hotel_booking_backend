@@ -16,7 +16,7 @@ router.route("/createHotel").post(verifyAdmin, createHotel);
 
 router.route("/updateHotel/:id").put(verifyAdmin, updateHotel);
 
-router.route("/deleteHotel/:id").delete(verifyAdmin, deleteHotel);
+router.route("/:id").delete(verifyAdmin, deleteHotel);
 
 router.route("/").get(getHotels);
 

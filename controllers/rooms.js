@@ -68,7 +68,7 @@ export const deleteRoom = async (req, res, next) => {
 export const getRoom = async (req, res, next) => {
   try {
     const room = await Rooms.findById(req.params.id);
-    res.status(200).json({ room: room });
+    res.status(200).send(room);
   } catch (err) {
     next(err);
     console.log("get room error in backend: ", err);
@@ -78,7 +78,7 @@ export const getRoom = async (req, res, next) => {
 export const getRooms = async (req, res, next) => {
   try {
     const rooms = await Rooms.find();
-    res.status(200).json({ rooms: rooms });
+    res.status(200).send(rooms);
   } catch (err) {
     next(err);
     console.log("get rooms error in backend: ", err);

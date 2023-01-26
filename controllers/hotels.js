@@ -62,7 +62,7 @@ export const getHotels = async (req, res, next) => {
       ...others,
       cheapestPrice: { $gt: min || 1, $lt: max || 9999 },
     }).limit(req.query.limit);
-    res.status(200).json({ hotels: hotels });
+    res.status(200).send(hotels);
   } catch (err) {
     next(err);
     console.log("Get hotels error in backend: ", err);
@@ -112,7 +112,7 @@ export const getHotelRooms = async (req, res, next) => {
         return Rooms.findById(room);
       })
     );
-    res.status(200).json({ rooms: rooms });
+    res.status(200).send(rooms);
   } catch (err) {
     next(err);
     console.log("Get Hotel rooms error in backend: ", err);

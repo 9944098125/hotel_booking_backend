@@ -16,7 +16,7 @@ router.route("/updateRoom/:id").put(verifyAdmin, updateRoom);
 
 router.route("/updateRoomAvailability/:id").put(updateRoomAvailability);
 
-router.route("/deleteRoom/:hotelId/:id").delete(deleteRoom);
+router.route("/:id").delete(deleteRoom);
 
 router.route("/room/:id").get(getRoom);
 

@@ -31,6 +31,7 @@ export const getUser = async (req, res, next) => {
 export const getUsers = async (req, res, next) => {
   try {
     const users = await Users.find();
+    console.log("req access token", req.cookies);
     res.status(200).json(users);
   } catch (err) {
     next(err);

@@ -48,20 +48,36 @@ export const updateRoomAvailability = async (req, res, next) => {
   }
 };
 
+// export const deleteRoom = async (req, res, next) => {
+//   const hotelId = req.params.hotelId;
+//   try {
+//     await Rooms.findByIdAndDelete(req.params.id);
+//     try {
+//       await Hotels.findByIdAndUpdate(hotelId, {
+//         $pull: { rooms: req.params.id },
+//       });
+//     } catch (err) {
+//       next(err);
+//     }
+//   } catch (err) {
+//     next(err);
+//     console.log("delete room error in backend: ", err);
+//   }
+// };
+
 export const deleteRoom = async (req, res, next) => {
-  const hotelId = req.params.hotelId;
   try {
     await Rooms.findByIdAndDelete(req.params.id);
     try {
-      await Hotels.findByIdAndUpdate(hotelId, {
+      await Hotels.findByIdAndUpdate(req.params.hotelId, {
         $pull: { rooms: req.params.id },
       });
     } catch (err) {
       next(err);
     }
+    res.status(200).json("Room has been deleted.");
   } catch (err) {
     next(err);
-    console.log("delete room error in backend: ", err);
   }
 };
 

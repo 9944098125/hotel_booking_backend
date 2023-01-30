@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
     });
     const savedUser = await newUser.save();
     res.status(201).json({
-      message: "User created successfully",
+      message: `${savedUser.username}, your account created successfully`,
       user: savedUser,
     });
   } catch (err) {
@@ -40,16 +40,13 @@ export const login = async (req, res, next) => {
 
     const token = jwt.sign(
       {
-        id: availableUser._id,
+        userId: availableUser._id,
         isAdmin: availableUser.isAdmin,
       },
       process.env.SECRET_KEY
     );
     const { password, isAdmin, ...otherDetails } = availableUser._doc;
-    res
-      .cookie("access_token", token, { httpOnly: true })
-      .status(200)
-      .json({ details: { ...otherDetails }, isAdmin });
+    res.status(200).json({ details: { ...otherDetails, token }, isAdmin });
   } catch (err) {
     next(err);
     console.log("Login Error in backend: ", err);

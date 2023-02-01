@@ -9,6 +9,7 @@ export const createHotel = async (req, res, next) => {
       message: "Hotel created successfully",
       hotel: savedHotel,
     });
+    console.log("req", req);
   } catch (err) {
     next(err);
     console.log("Create hotel error in backend: ", err);
